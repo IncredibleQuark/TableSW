@@ -1,0 +1,48 @@
+<h1>List View</h1>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label for="searchInput" class="sr-only">Search</label>
+      <input type="text" class="form-control" id="searchInput" placeholder="Search...">
+    </div>
+  </div>
+  <div class="col-sm-6 text-sm-right">
+    <a routerLink="/new" class="btn btn-primary mb-3">Add New</a>
+  </div>
+</div>
+
+<table class="table table-bordered table-hover">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Species</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Homeworld</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody  *ngIf="charactersArray">
+  <tr *ngFor="let character of charactersArray">
+    <th scope="row">{{character.id}}</th>
+    <td>{{character.name}}</td>
+    <td>{{character.species}}</td>
+    <td>{{character.gender}}</td>
+    <td>{{character.homeworld}}</td>
+    <td>
+      <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+        <button type="button" class="btn btn-secondary">
+          <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+        </button>
+        <button type="button" class="btn btn-danger">
+          <i class="fa fa-trash-o" aria-hidden="true"></i> Remove
+        </button>
+      </div>
+    </td>
+  </tr>
+
+  </tbody>
+</table>
+
+<sl-paginator [totalCount]="totalCount" [activePage]="page" (pageChanged)="getData($event)"></sl-paginator>
