@@ -11,25 +11,37 @@ export class PaginatorComponent implements OnChanges {
   @Input() activePage: number;
   @Output() pageChanged: EventEmitter<number> = new EventEmitter<number>();
 
-  pages: number;
+  pages: Array<number>;
 
   constructor() {
+    this.pages = [];
   }
-
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes) {
       if (changes.totalCount.currentValue > 0) {
-        this.pages = Math.ceil(changes.totalCount.currentValue / 10) || 0;
-        console.warn(this.pages + ' pages');
+        this.pages = new Array(Math.ceil(changes.totalCount.currentValue / 10) || 0);
       }
-      console.warn(changes);
     }
   }
 
-  changePage() {
-    this.activePage = 2;
-    this.pageChanged.emit(this.activePage);
+  changePage(page) {
+    if (page !== this.activePage) {
+      this.activePage = page;
+      this.pageChanged.emit(this.activePage);
+    }
+  }
+
+  isActive(page) {
+    return page === this.activePage;
+  }
+
+  isFirst() {
+    return this.activePage === 1;
+  }
+
+  isLast() {
+    return this.activePage === this.pages.length;
   }
 
 }

@@ -19,7 +19,7 @@ export class ListViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.getData(this.page);
+    this.getData(this.page);
   }
 
   getData(page) {

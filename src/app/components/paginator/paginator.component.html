@@ -1,17 +1,20 @@
 <nav aria-label="Data grid navigation">
+
   <ul class="pagination justify-content-end">
-    <li class="page-item disabled">
-      <a class="page-link" href="#" tabindex="-1">Previous</a>
+
+    <li class="page-item" [ngClass]="{'disabled': isFirst()}">
+      <a class="page-link" href="#" tabindex="-1" (click)="changePage(activePage-1)">Previous</a>
     </li>
-    <li class="page-item active">
-      <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+
+    <li *ngFor="let item of pages; let i = index" class="page-item" [ngClass]="{'active': isActive(i+1)}">
+      <a class="page-link" (click)="changePage(i+1)" href="#"> {{i+1}} <span class="sr-only" *ngIf="isActive()">(current)</span></a>
     </li>
-    <li class="page-item">
-      <a class="page-link" href="#">2</a>
+
+    <li class="page-item" [ngClass]="{'disabled': isLast()}">
+      <a class="page-link" href="#" (click)="changePage(activePage+1)">Next</a>
     </li>
-    <li class="page-item">
-      <a class="page-link" href="#">Next</a>
-    </li>
+
   </ul>
+
 </nav>
-<button (click)="changePage()">click</button>
+
