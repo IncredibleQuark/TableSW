@@ -32,4 +32,8 @@ export class CharactersService {
     return this.http.post(`${this.apiUrl}/characters`, data);
   }
 
+  deleteCharacter(id) {
+    return this.http.delete(`${this.apiUrl}/characters/${id}`);
+  }
+
 }

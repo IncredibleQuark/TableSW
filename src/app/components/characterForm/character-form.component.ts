@@ -5,11 +5,11 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'sl-new-character',
-  templateUrl: './new-character.component.html',
-  styleUrls: ['./new-character.component.scss']
+  selector: 'sl-character-form',
+  templateUrl: './character-form.component.html',
+  styleUrls: ['./character-form.component.scss']
 })
-export class NewCharacterComponent implements OnInit {
+export class CharacterFormComponent implements OnInit {
 
   speciesArray: Array<string>;
   character: Character;

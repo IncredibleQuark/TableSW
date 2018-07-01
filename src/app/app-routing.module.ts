@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {ListViewComponent} from './components/list-view/list-view.component';
-import {NewCharacterComponent} from './components/new-character/new-character.component';
+import {CharacterFormComponent} from './components/characterForm/character-form.component';
 
 const routes: Routes = [
   {
@@ -11,7 +11,11 @@ const routes: Routes = [
   },
   {
     path: 'new',
-    component: NewCharacterComponent
+    component: CharacterFormComponent
+  },
+  {
+    path: 'edit',
+    component: CharacterFormComponent
   }
 ];
 

@@ -4,7 +4,8 @@
   <div class="col-sm-6">
     <div class="form-group">
       <label for="searchInput" class="sr-only">Search</label>
-      <input type="text" class="form-control" id="searchInput" #searchText placeholder="Search..." (input)="getData(1, searchText.value)">
+      <input type="text" class="form-control" id="searchInput" #searchText placeholder="Search..."
+             (input)="getData(1, searchText.value)">
     </div>
   </div>
   <div class="col-sm-6 text-sm-right">
@@ -23,7 +24,7 @@
     <th scope="col">Actions</th>
   </tr>
   </thead>
-  <tbody *ngIf="charactersArray">
+  <tbody *ngIf="charactersArray && charactersArray.length > 0; else notFound">
   <tr *ngFor="let character of charactersArray">
     <th scope="row">{{character.id}}</th>
     <td>{{character.name}}</td>
@@ -32,10 +33,10 @@
     <td>{{character.homeworld}}</td>
     <td>
       <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
-        <button type="button" class="btn btn-secondary">
+        <button type="button" class="btn btn-secondary" >
           <i class="fa fa-pencil" aria-hidden="true"></i> Edit
         </button>
-        <button type="button" class="btn btn-danger">
+        <button type="button" class="btn btn-danger" (click)="deleteCharacter(character.id)">
           <i class="fa fa-trash-o" aria-hidden="true"></i> Remove
         </button>
       </div>
@@ -43,6 +44,18 @@
   </tr>
 
   </tbody>
+
+
 </table>
 
 <sl-paginator [totalCount]="totalCount" [activePage]="page" (pageChanged)="getData($event)"></sl-paginator>
+
+<ng-template #notFound>
+  <tbody class="text-center">
+  <tr>
+    <th colspan="6" class="col-auto">
+      No results found :(
+    </th>
+  </tr>
+  </tbody>
+</ng-template>

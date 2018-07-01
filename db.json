@@ -173,18 +173,11 @@
       "homeworld": ""
     },
     {
-      "name": "lukasz",
-      "species": "Clawdite",
+      "name": "asd",
+      "species": "Chagrian",
       "gender": "male",
-      "homeworld": "",
+      "homeworld": "asd",
       "id": 20
-    },
-    {
-      "name": "war",
-      "species": "Cerean",
-      "gender": "male",
-      "homeworld": "",
-      "id": 21
     }
   ]
 }
