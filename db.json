@@ -171,6 +171,20 @@
       "species": "Droid",
       "gender": "n/a",
       "homeworld": ""
+    },
+    {
+      "name": "lukasz",
+      "species": "Clawdite",
+      "gender": "male",
+      "homeworld": "",
+      "id": 20
+    },
+    {
+      "name": "war",
+      "species": "Cerean",
+      "gender": "male",
+      "homeworld": "",
+      "id": 21
     }
   ]
 }

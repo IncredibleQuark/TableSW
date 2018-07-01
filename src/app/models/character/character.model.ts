@@ -1,7 +1,7 @@
-export interface ICharacter {
-  id: number;
-  name: string;
-  species: string;
-  gender: string;
-  homeworld: string;
+export class Character {
+
+  constructor(public name: string,
+              public species: string,
+              public gender: string,
+              public homeworld?: string) {}
 }

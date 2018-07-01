@@ -10,6 +10,7 @@ import {NewCharacterComponent} from './components/new-character/new-character.co
 import {CharactersService} from './services/characters.service';
 import {HttpClientModule} from '@angular/common/http';
 import { PaginatorComponent } from './components/paginator/paginator.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [CharactersService],

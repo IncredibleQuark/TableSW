@@ -1,4 +1,4 @@
-import {ICharacter} from '../models/character/character.model';
+import {ICharacter} from '../models/character/character.interface';
 
 export interface ICharacterResponse {
   data: Array<ICharacter>;

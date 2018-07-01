@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CharactersService} from '../../services/characters.service';
-import {ICharacter} from '../../models/character/character.model';
+import {ICharacter} from '../../models/character/character.interface';
 import {ICharacterResponse} from '../../types/response.type';
 import {Observable} from 'rxjs/Observable';
 
