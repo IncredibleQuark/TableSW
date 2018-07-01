@@ -1,4 +1,5 @@
-<h1 class="card-title">Add new character</h1>
+<h1 class="card-title" *ngIf="!isModeEdit">Add new character</h1>
+<h1 class="card-title" *ngIf="isModeEdit">Edit Character #{{id}}</h1>
 
 <div class="row">
 
@@ -49,7 +50,8 @@
                #homeworld="ngModel" name="homeworld"/>
       </div>
 
-      <input type="submit" class="btn btn-block btn-primary pointer" [disabled]="sending" value="Add Character"/>
+      <input *ngIf="!isModeEdit" type="submit" class="btn btn-block btn-primary pointer" [disabled]="sending" value="Add Character"/>
+      <input *ngIf="isModeEdit" type="submit" class="btn btn-block btn-primary pointer" [disabled]="sending" value="Edit Character"/>
 
     </form>
   </div>

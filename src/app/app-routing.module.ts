@@ -14,7 +14,7 @@ const routes: Routes = [
     component: CharacterFormComponent
   },
   {
-    path: 'edit',
+    path: 'edit/:id',
     component: CharacterFormComponent
   }
 ];

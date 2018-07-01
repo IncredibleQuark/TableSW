@@ -24,6 +24,14 @@ export class CharactersService {
     }).debounceTime(200);
   }
 
+  getCharacter(id) {
+    return this.http.get(`${this.apiUrl}/characters/?id=${id}`);
+  }
+
+  editCharacter(id, data) {
+    return this.http.put(`${this.apiUrl}/characters/${id}`, data);
+  }
+
   getAllSpecies() {
     return this.http.get(`${this.apiUrl}/species`);
   }

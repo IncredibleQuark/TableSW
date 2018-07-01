@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CharactersService} from '../../services/characters.service';
 import {Character} from '../../models/character/character.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'sl-character-form',
@@ -15,10 +15,20 @@ export class CharacterFormComponent implements OnInit {
   character: Character;
   model: any;
   sending: boolean;
+  id: number;
+  isModeEdit: boolean;
 
 
-  constructor(private charactersService: CharactersService, private router: Router) {
+  constructor(private charactersService: CharactersService, private router: Router, private route: ActivatedRoute) {
     this.model = {};
+
+    if (this.route.snapshot.params.id) {
+      this.id = this.route.snapshot.params.id;
+      this.isModeEdit = true;
+      this.getCharacter(this.id);
+    } else {
+      this.isModeEdit = false;
+    }
   }
 
   ngOnInit() {
@@ -34,6 +44,20 @@ export class CharacterFormComponent implements OnInit {
     });
   }
 
+  getCharacter(id) {
+    this.charactersService.getCharacter(id).subscribe((data: Array<Character>) => {
+      this.model = {
+        name: data[0].name,
+        species: data[0].species,
+        gender: data[0].gender,
+        homeworld: data[0].homeworld || ''
+      };
+
+    }, (err) => {
+      console.warn('Could not load character' + err);
+    });
+  }
+
   submitForm(form) {
 
     if (form.valid) {
@@ -41,17 +65,34 @@ export class CharacterFormComponent implements OnInit {
       this.sending = true;
       this.character = new Character(this.model.name, this.model.species, this.model.gender, this.model.homeworld || '');
 
-      this.charactersService.addNewCharacter(this.character).subscribe((res: any) => {
-        console.warn('Added character with id: ' + res.id);
-        this.sending = false;
-        this.router.navigate(['']);
-      }, (err) => {
-        console.warn(err);
-        this.sending = false;
-      });
+      if (this.isModeEdit) {
+        this.editCharacter();
+      } else {
+        this.addNewCharacter();
+      }
 
     }
 
+  }
+
+  editCharacter() {
+    this.charactersService.editCharacter(this.id, this.character).subscribe( () => {
+      console.warn('Character edited');
+      this.router.navigate(['']);
+    }, (err) => {
+      console.warn('Could not edit character ' + err);
+    });
+  }
+
+  addNewCharacter() {
+    this.charactersService.addNewCharacter(this.character).subscribe((res: any) => {
+      console.warn('Added character with id: ' + res.id);
+      this.sending = false;
+      this.router.navigate(['']);
+    }, (err) => {
+      console.warn('Could not add character' + err);
+      this.sending = false;
+    });
   }
 
 }
