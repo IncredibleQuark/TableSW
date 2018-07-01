@@ -4,7 +4,7 @@
   <div class="col-sm-6">
     <div class="form-group">
       <label for="searchInput" class="sr-only">Search</label>
-      <input type="text" class="form-control" id="searchInput" placeholder="Search...">
+      <input type="text" class="form-control" id="searchInput" #searchText placeholder="Search..." (input)="getData(1, searchText.value)">
     </div>
   </div>
   <div class="col-sm-6 text-sm-right">

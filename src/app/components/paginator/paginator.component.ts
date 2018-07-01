@@ -18,7 +18,7 @@ export class PaginatorComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes) {
+    if (changes.totalCount) {
       if (changes.totalCount.currentValue > 0) {
         this.pages = new Array(Math.ceil(changes.totalCount.currentValue / 10) || 0);
       }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CharactersService} from '../../services/characters.service';
 import {ICharacter} from '../../models/character/character.model';
 import {ICharacterResponse} from '../../types/response.type';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'sl-list-view',
@@ -22,12 +23,12 @@ export class ListViewComponent implements OnInit {
     this.getData(this.page);
   }
 
-  getData(page) {
+  getData(page, text = '') {
+    this.page = page;
 
-    this.charactersService.getCharacters(page).subscribe((res: ICharacterResponse) => {
+    this.charactersService.getCharacters(page, text).subscribe((res: ICharacterResponse) => {
       this.charactersArray = res.data;
       this.totalCount = res.totalCount;
-      console.log(res);
     });
   }
 }
