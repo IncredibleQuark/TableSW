@@ -1,13 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
+import {map, debounceTime} from 'rxjs/operators';
 
 @Injectable()
 export class CharactersService {
 
-  private apiUrl: string;
+  private readonly apiUrl: string;
   private itemsLimit: number;
 
   constructor(private http: HttpClient) {
@@ -16,12 +15,15 @@ export class CharactersService {
   }
 
   getCharacters(page, text = '') {
-    return this.http.get(`${this.apiUrl}/characters?_page=${page}&_limit=${this.itemsLimit}&q=${text}`, {observe: 'response'}).map(res => {
-      return {
-        data: res.body,
-        totalCount: parseInt(res.headers.get('X-Total-Count'), 10)
-      };
-    }).debounceTime(200);
+    return this.http.get(`${this.apiUrl}/characters?_page=${page}&_limit=${this.itemsLimit}&q=${text}`, {observe: 'response'})
+      .pipe(
+        map(res => {
+          return {
+            data: res.body,
+            totalCount: parseInt(res.headers.get('X-Total-Count'), 10)
+          };
+        }),
+        debounceTime(200));
   }
 
   getCharacter(id) {
