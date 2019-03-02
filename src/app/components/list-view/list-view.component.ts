@@ -13,12 +13,14 @@ export class ListViewComponent implements OnInit {
   charactersArray: Array<ICharacter>;
   page: number;
   totalCount: number;
+  displayedColumns: string[] = ['Id', 'Name', 'Species', 'Gender', 'Homeworld', 'Actions'];
 
   constructor(private charactersService: CharactersService) {
     this.page = 1;
   }
 
   ngOnInit() {
+
     this.getData(this.page);
   }
 
