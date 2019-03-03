@@ -77,7 +77,6 @@ export class CharacterFormComponent implements OnInit {
 
   editCharacter() {
     this.charactersService.editCharacter(this.id, this.character).subscribe( () => {
-      console.warn('Character edited');
       this.router.navigate(['']);
     }, (err) => {
       console.warn('Could not edit character ' + err);
@@ -86,7 +85,6 @@ export class CharacterFormComponent implements OnInit {
 
   addNewCharacter() {
     this.charactersService.addNewCharacter(this.character).subscribe((res: any) => {
-      console.warn('Added character with id: ' + res.id);
       this.sending = false;
       this.router.navigate(['']);
     }, (err) => {

@@ -13,43 +13,38 @@
   </div>
 </div>
 
-<table mat-table [dataSource]="charactersArray" class="table table-bordered table-hover">
-  <!--<thead class="thead-light">-->
-  <!--<tr>-->
-    <!--<th scope="col">Id</th>-->
-    <!--<th scope="col">Name</th>-->
-    <!--<th scope="col">Species</th>-->
-    <!--<th scope="col">Gender</th>-->
-    <!--<th scope="col">Homeworld</th>-->
-    <!--<th scope="col">Actions</th>-->
-  <!--</tr>-->
-  <!--</thead>-->
-  <!--<tbody *ngIf="charactersArray && charactersArray.length > 0; else notFound">-->
-  <!--<tr *ngFor="let character of charactersArray">-->
-    <!--<th scope="row">{{character.id}}</th>-->
-    <!--<td>{{character.name}}</td>-->
-    <!--<td>{{character.species}}</td>-->
-    <!--<td>{{character.gender}}</td>-->
-    <!--<td>{{character.homeworld}}</td>-->
-    <!--<td>-->
-      <!--<div class="btn-group btn-group-sm" role="group" aria-label="Actions">-->
-        <!--<button type="button" class="btn btn-secondary" [routerLink]="['/edit', character.id]">-->
-          <!--<i class="fa fa-pencil" aria-hidden="true"></i> Edit-->
-        <!--</button>-->
-        <!--<button type="button" class="btn btn-danger" (click)="deleteCharacter(character.id)">-->
-          <!--<i class="fa fa-trash-o" aria-hidden="true"></i> Remove-->
-        <!--</button>-->
-      <!--</div>-->
-    <!--</td>-->
-  <!--</tr>-->
+<table class="table table-bordered table-hover">
+  <thead class="thead-light">
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Name</th>
+    <th scope="col">Species</th>
+    <th scope="col">Gender</th>
+    <th scope="col">Homeworld</th>
+    <th scope="col">Actions</th>
+  </tr>
+  </thead>
+  <tbody *ngIf="charactersArray && charactersArray.length > 0; else notFound">
+  <tr *ngFor="let character of charactersArray">
+    <th scope="row">{{character.id}}</th>
+    <td>{{character.name}}</td>
+    <td>{{character.species}}</td>
+    <td>{{character.gender}}</td>
+    <td>{{character.homeworld}}</td>
+    <td>
+      <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+        <button type="button" class="btn btn-secondary" [routerLink]="['/edit', character.id]">
+          <i class="fa fa-pencil" aria-hidden="true"></i> Edit
+        </button>
+        <button type="button" class="btn btn-danger" (click)="deleteCharacter(character.id)">
+          <i class="fa fa-trash-o" aria-hidden="true"></i> Remove
+        </button>
+      </div>
+    </td>
+  </tr>
 
-  <!--</tbody>-->
-  <ng-container matColumnDef="Id">
-    <th mat-header-cell *matHeaderCellDef> Id </th>
-    <td mat-cell *matCellDef="let character"> {{character.id}} </td>
-  </ng-container>
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </tbody>
+
 </table>
 
 <sl-paginator [totalCount]="totalCount" [activePage]="page" (pageChanged)="getData($event)"></sl-paginator>

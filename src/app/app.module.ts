@@ -11,7 +11,6 @@ import {HttpClientModule} from '@angular/common/http';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import {FormsModule} from '@angular/forms';
 import {CharacterFormComponent} from './components/characterForm/character-form.component';
-import {AppMaterialModule} from './app.material.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,6 @@ import {AppMaterialModule} from './app.material.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AppMaterialModule,
     FormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
