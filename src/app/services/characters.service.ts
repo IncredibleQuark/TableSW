@@ -14,8 +14,8 @@ export class CharactersService {
     this.itemsLimit = 10;
   }
 
-  getCharacters(page, text = '') {
-    return this.http.get(`${this.apiUrl}/characters?_page=${page}&_limit=${this.itemsLimit}&q=${text}`, {observe: 'response'})
+  getCharacters(page, text = '', sort = {view: 'id', order: 'DESC'}) {
+    return this.http.get(`${this.apiUrl}/characters?_page=${page}&_limit=${this.itemsLimit}&q=${text}&_sort=${sort.view}&_order=${sort.order}`, {observe: 'response'})
       .pipe(
         map(res => {
           return {

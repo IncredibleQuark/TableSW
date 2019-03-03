@@ -13,22 +13,38 @@ export class ListViewComponent implements OnInit {
   charactersArray: Array<ICharacter>;
   page: number;
   totalCount: number;
+  columns: Array<string>;
+  sort: { view: string, order: string };
+  searchText: string;
 
   constructor(private charactersService: CharactersService) {
     this.page = 1;
   }
 
   ngOnInit() {
+    this.sort = {view: 'id', order: 'asc'};
+    this.columns = ['Id', 'Name', 'Species', 'Gender', 'Homeworld'];
     this.getData(this.page);
+
   }
 
-  getData(page, text = '') {
+  getData(page, text = this.searchText) {
     this.page = page;
+    this.searchText = text;
 
-    this.charactersService.getCharacters(page, text).subscribe((res: ICharacterResponse) => {
+    this.charactersService.getCharacters(page, this.searchText, this.sort).subscribe((res: ICharacterResponse) => {
       this.charactersArray = res.data;
       this.totalCount = res.totalCount;
     });
+  }
+
+  toggleSort(view) {
+    let order = 'asc';
+    if (view.toLowerCase() === this.sort.view) {
+      order = this.sort.order === 'asc' ? 'desc' : 'asc';
+    }
+    this.sort = {view: view.toLowerCase(), order: order};
+    this.getData(this.page);
   }
 
   deleteCharacter(id) {

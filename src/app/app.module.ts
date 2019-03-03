@@ -11,6 +11,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import {FormsModule} from '@angular/forms';
 import {CharacterFormComponent} from './components/characterForm/character-form.component';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {CharacterFormComponent} from './components/characterForm/character-form.
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    AngularFontAwesomeModule,
     FormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
