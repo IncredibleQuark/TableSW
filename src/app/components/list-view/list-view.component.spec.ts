@@ -7,6 +7,7 @@ import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {CharactersService} from '../../services/characters.service';
 import {CharactersServiceMock} from '../../mocks/charactersService.mock';
 import {HttpClientModule} from '@angular/common/http';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
 
 describe('ListViewComponent', () => {
   let component: ListViewComponent;
@@ -15,7 +16,7 @@ describe('ListViewComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ListViewComponent ],
-      imports: [FormsModule, RouterTestingModule, HttpClientModule],
+      imports: [FormsModule, RouterTestingModule, HttpClientModule, AngularFontAwesomeModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       providers: [
         {
